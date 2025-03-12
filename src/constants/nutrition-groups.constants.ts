@@ -68,9 +68,9 @@ export const categoryWithFoods: NutritionCategory[] = [
       { itemId: 33, name: "Сметана 15%", weight: 110 },
       { itemId: 34, name: "Масло", weight: 27 },
       { itemId: 35, name: "Сало", weight: 19 },
-      { itemId: 15, name: "Кефір 2.5%", weight: 360 },
+      { itemId: 36, name: "Кефір 2.5%", weight: 360 },
       { itemId: 37, name: "Несолодкий йогурт 1.6%", weight: 370 },
-      { itemId: 14, name: "Молоко 2.5%", weight: 360 },
+      { itemId: 38, name: "Молоко 2.5%", weight: 360 },
     ],
   },
   {
