@@ -185,7 +185,8 @@ export default function NutritionList() {
           categories={enrichCategoriesWithAvailableAmounts(
             categoryWithFoods.filter(category => {
               const percentage = getCategoryPercentage(category.items);
-              return percentage < 100;
+              
+              return percentage < 99.5;
             })
           )}
           selectedItems={selectedItems}
