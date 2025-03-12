@@ -8,7 +8,7 @@ import AmountSelectionDialog from './AmountSelectionDialog';
 import AvailableProductsList from './AvailableProductsList';
 import ConsumedProductsList from './ConsumedProductsList';
 
-const STORAGE_KEY = 'nutrition-selected-items';
+const STORAGE_KEY = 'nutrition-history';
 
 export default function NutritionList() {
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
@@ -21,28 +21,53 @@ export default function NutritionList() {
   } | null>(null);
   const [amount, setAmount] = useState(0);
 
-  // Загрузка данных при монтировании компонента
+  // Получаем текущую дату в формате YYYY-MM-DD
+  const getCurrentDate = () => {
+    return new Date().toISOString().split('T')[0];
+  };
+
+  // Загружаем данные для текущего дня
+  const loadTodayData = () => {
+    const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const today = getCurrentDate();
+    return history[today] || [];
+  };
+
+  // Сохраняем данные текущего дня
+  const saveTodayData = (items: SelectedItem[]) => {
+    const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const today = getCurrentDate();
+    
+    if (items.length > 0) {
+      history[today] = items;
+    }
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  };
+
+  // Эта функция загружает данные при старте приложения
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedItems = localStorage.getItem(STORAGE_KEY);
-      if (savedItems) {
-        try {
-          const parsedItems = JSON.parse(savedItems);
-          setSelectedItems(parsedItems);
-        } catch (error) {
-          console.error('Ошибка при загрузке данных из localStorage:', error);
-          localStorage.removeItem(STORAGE_KEY);
-        }
-      }
+      const todayItems = loadTodayData();
+      setSelectedItems(todayItems);
     }
   }, []);
 
-  // Сохранение данных при изменении выбранных элементов
+  // Эта функция сохраняет данные при любых изменениях
   useEffect(() => {
-    if (typeof window !== 'undefined' && selectedItems.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(selectedItems));
+    if (typeof window !== 'undefined') {
+      saveTodayData(selectedItems);
     }
   }, [selectedItems]);
+
+  // Модифицируем обработчик кнопки сброса
+  const handleReset = () => {
+    setSelectedItems([]);
+    const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const today = getCurrentDate();
+    delete history[today];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+  };
 
   const getItemUnit = (item: NutritionItem) => {
     return item.weight ? 'г' : 'шт';
@@ -210,6 +235,12 @@ export default function NutritionList() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <Tabs tabs={tabs} />
+      <button 
+        onClick={handleReset}
+        className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Сбросить съеденное
+      </button>
       <AmountSelectionDialog
         open={openDialog}
         onClose={handleDialogClose}
