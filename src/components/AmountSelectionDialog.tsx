@@ -22,6 +22,7 @@ export default function AmountSelectionDialog({
   unit,
   onAmountChange,
 }: AmountSelectionDialogProps) {
+  
   return (
     <Transition appear show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -64,7 +65,7 @@ export default function AmountSelectionDialog({
                       max={maxAmount}
                       value={amount}
                       onChange={(e) => onAmountChange(Number(e.target.value))}
-                      step={unit === 'шт' || amount % 5 !== 0 ? 1 : 5}
+                      step={(unit === 'шт' || maxAmount % 5 !== 0) ? 1 : 5}
                       className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer touch-none
                         [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 
                         [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 
