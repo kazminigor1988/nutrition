@@ -58,6 +58,9 @@ export default function AmountSelectionDialog({
                 </Dialog.Title>
 
                 <div className="mt-4">
+                  <div className="text-center text-white mt-4 text-lg">
+                    {amount} / {maxAmount} {unit}
+                  </div>
                   <div className="relative px-2">
                     <input
                       type="range"
@@ -79,9 +82,6 @@ export default function AmountSelectionDialog({
                         background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(amount / maxAmount) * 100}%, #374151 ${(amount / maxAmount) * 100}%, #374151 100%)`
                       }}
                     />
-                  </div>
-                  <div className="text-center text-white mt-4 text-lg">
-                    {amount} / {maxAmount} {unit}
                   </div>
                 </div>
 
