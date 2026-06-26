@@ -7,6 +7,7 @@ import Tabs from './TabPanel';
 import AmountSelectionDialog from './AmountSelectionDialog';
 import AvailableProductsList from './AvailableProductsList';
 import ConsumedProductsList from './ConsumedProductsList';
+import { Button } from '@/components/ui/button';
 
 const STORAGE_KEY = 'nutrition-history-v2';
 
@@ -235,12 +236,13 @@ export default function NutritionList() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <Tabs tabs={tabs} />
-      <button 
+      <Button
+        variant="destructive"
         onClick={handleReset}
-        className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+        className="mt-4 w-full"
       >
         Скинути з&apos;їдене
-      </button>
+      </Button>
       <AmountSelectionDialog
         open={openDialog}
         onClose={handleDialogClose}

@@ -1,5 +1,11 @@
-import { NutritionItem, SelectedItem } from '@/types/nutrition';
+import { SelectedItem } from '@/types/nutrition';
 import { categoryWithFoods } from '@/constants/nutrition-groups.constants';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 interface ConsumedProductsListProps {
   selectedItems: SelectedItem[];
@@ -12,7 +18,6 @@ export default function ConsumedProductsList({
 }: ConsumedProductsListProps) {
   const consumedItems = selectedItems.filter(item => item.amount > 0 && item.isExplicitlySelected);
 
-  // Групуємо з'їдені продукти за категоріями
   const groupedConsumedItems = categoryWithFoods.map(category => {
     const categoryConsumedItems = category.items
       .map(item => {
@@ -36,26 +41,30 @@ export default function ConsumedProductsList({
   return (
     <div className="space-y-6">
       {groupedConsumedItems.map((category) => (
-        <div key={category.name} className="bg-gray-800 rounded-xl p-4 shadow-lg">
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">{category.name}</h3>
-          <ul className="space-y-3">
-            {category.items.map((item) => (
-              <li
-                key={item.itemId}
-                className="flex flex-col sm:flex-row sm:items-center justify-between p-3 hover:bg-gray-700 rounded-lg cursor-pointer active:bg-gray-600 transition-colors"
-                onClick={() => onItemClick(item.itemId, item.name, item.maxAmount)}
-              >
-                <span className="text-white text-base sm:text-lg mb-2 sm:mb-0">{item.name}</span>
-                <div className="text-sm sm:text-base">
-                  <span className="text-blue-400">
-                    {item.amount}{item.unit}
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Card key={category.name}>
+          <CardHeader>
+            <CardTitle className="text-lg sm:text-xl">{category.name}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              {category.items.map((item) => (
+                <li
+                  key={item.itemId}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-lg cursor-pointer transition-colors hover:bg-accent active:bg-accent/80 text-foreground"
+                  onClick={() => onItemClick(item.itemId, item.name, item.maxAmount)}
+                >
+                  <span className="text-base sm:text-lg mb-2 sm:mb-0">{item.name}</span>
+                  <div className="text-sm sm:text-base">
+                    <span className="text-blue-400">
+                      {item.amount}{item.unit}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
       ))}
     </div>
   );
-} 
+}

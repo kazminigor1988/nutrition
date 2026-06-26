@@ -1,5 +1,12 @@
-import { Dialog, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
 
 interface AmountSelectionDialogProps {
   open: boolean;
@@ -22,90 +29,37 @@ export default function AmountSelectionDialog({
   unit,
   onAmountChange,
 }: AmountSelectionDialogProps) {
-  
+  const step = unit === 'шт' || maxAmount % 5 !== 0 ? 1 : 5;
+
   return (
-    <Transition appear show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={onClose}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
+    <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Виберіть кількість для {itemName}</DialogTitle>
+        </DialogHeader>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded bg-gray-800 p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-white mb-4"
-                >
-                  Виберіть кількість для {itemName}
-                </Dialog.Title>
-
-                <div className="mt-4">
-                  <div className="text-center text-white mt-4 text-lg">
-                    {amount} / {maxAmount} {unit}
-                  </div>
-                  <div className="relative px-2">
-                    <input
-                      type="range"
-                      min={0}
-                      max={maxAmount}
-                      value={amount}
-                      onChange={(e) => onAmountChange(Number(e.target.value))}
-                      step={(unit === 'шт' || maxAmount % 5 !== 0) ? 1 : 5}
-                      className="w-full h-3 bg-gray-700 rounded-lg appearance-none cursor-pointer touch-none
-                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:w-6 
-                        [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 
-                        [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:border-none
-                        [&::-webkit-slider-thumb]:shadow-lg
-                        [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:w-6 
-                        [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-500 
-                        [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none
-                        [&::-moz-range-thumb]:shadow-lg"
-                      style={{
-                        background: `linear-gradient(to right, #3b82f6 0%, #3b82f6 ${(amount / maxAmount) * 100}%, #374151 ${(amount / maxAmount) * 100}%, #374151 100%)`
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6 flex justify-end space-x-3">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded px-4 py-3 text-base font-medium text-gray-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-w-[80px] sm:min-w-[100px]"
-                    onClick={onClose}
-                  >
-                    Скасувати
-                  </button>
-                  <button
-                    type="button"
-                    className="inline-flex justify-center rounded bg-blue-600 px-4 py-3 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 min-w-[80px] sm:min-w-[100px]"
-                    onClick={onConfirm}
-                  >
-                    Підтвердити
-                  </button>
-                </div>
-              </Dialog.Panel>
-            </Transition.Child>
+        <div className="mt-2">
+          <div className="text-center text-lg mb-4">
+            {amount} / {maxAmount} {unit}
+          </div>
+          <div className="px-2">
+            <Slider
+              min={0}
+              max={maxAmount}
+              step={step}
+              value={[amount]}
+              onValueChange={([value]) => onAmountChange(value)}
+            />
           </div>
         </div>
-      </Dialog>
-    </Transition>
+
+        <DialogFooter>
+          <Button variant="ghost" onClick={onClose}>
+            Скасувати
+          </Button>
+          <Button onClick={onConfirm}>Підтвердити</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
-} 
+}
