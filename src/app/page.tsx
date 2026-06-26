@@ -9,7 +9,7 @@ export default function Home() {
       <div className="w-full max-w-3xl">
         <div className="relative bg-gray-900 rounded-xl shadow-2xl p-6 mx-auto">
           <h1 className="text-3xl font-bold mb-8 text-center text-white">
-            План питания
+            План харчування
           </h1>
           <div className="relative z-10">
             <NutritionList />

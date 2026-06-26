@@ -152,7 +152,7 @@ export const categoryWithFoods: NutritionCategory[] = [
       { itemId: 28, name: "Оливки", weight: 140 }, // 70г * 2 приема
       { itemId: 29, name: "Гірчиця", weight: 48 }, // 24г * 2 приема
       { itemId: 30, name: "Кетчуп", weight: 72 }, // 36г * 2 приема
-      { itemId: 30, name: "Cметана", weight: 98 }, // 49г * 2 приема
+      { itemId: 43, name: "Cметана", weight: 98 }, // 49г * 2 приема
     ],
   },
   {

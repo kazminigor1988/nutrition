@@ -21,19 +21,19 @@ export default function NutritionList() {
   } | null>(null);
   const [amount, setAmount] = useState(0);
 
-  // Получаем текущую дату в формате YYYY-MM-DD
+  // Отримуємо поточну дату у форматі YYYY-MM-DD
   const getCurrentDate = () => {
     return new Date().toISOString().split('T')[0];
   };
 
-  // Загружаем данные для текущего дня
+  // Завантажуємо дані для поточного дня
   const loadTodayData = () => {
     const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     const today = getCurrentDate();
     return history[today] || [];
   };
 
-  // Сохраняем данные текущего дня
+  // Зберігаємо дані поточного дня
   const saveTodayData = (items: SelectedItem[]) => {
     const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     const today = getCurrentDate();
@@ -45,7 +45,7 @@ export default function NutritionList() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
   };
 
-  // Эта функция загружает данные при старте приложения
+  // Ця функція завантажує дані при старті застосунку
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const todayItems = loadTodayData();
@@ -53,7 +53,7 @@ export default function NutritionList() {
     }
   }, []);
 
-  // Эта функция сохраняет данные при любых изменениях
+  // Ця функція зберігає дані при будь-яких змінах
   useEffect(() => {
     if (typeof window !== 'undefined') {
       saveTodayData(selectedItems);
