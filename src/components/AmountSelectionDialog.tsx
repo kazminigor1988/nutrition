@@ -54,7 +54,7 @@ export default function AmountSelectionDialog({
                   as="h3"
                   className="text-lg font-medium leading-6 text-white mb-4"
                 >
-                  Выберите количество для {itemName}
+                  Виберіть кількість для {itemName}
                 </Dialog.Title>
 
                 <div className="mt-4">
@@ -91,14 +91,14 @@ export default function AmountSelectionDialog({
                     className="inline-flex justify-center rounded px-4 py-3 text-base font-medium text-gray-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white min-w-[80px] sm:min-w-[100px]"
                     onClick={onClose}
                   >
-                    Отмена
+                    Скасувати
                   </button>
                   <button
                     type="button"
                     className="inline-flex justify-center rounded bg-blue-600 px-4 py-3 text-base font-medium text-white hover:bg-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 min-w-[80px] sm:min-w-[100px]"
                     onClick={onConfirm}
                   >
-                    Подтвердить
+                    Підтвердити
                   </button>
                 </div>
               </Dialog.Panel>

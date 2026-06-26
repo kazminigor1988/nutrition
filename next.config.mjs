@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 output: 'export',
-  basePath: '/nutrition', // Укажи название репозитория
+  basePath: '/nutrition', // Вкажи назву репозиторію
   images: {
-    unoptimized: true, // Отключает оптимизацию изображений (GitHub Pages не поддерживает API Next.js)
+    unoptimized: true, // Вимикає оптимізацію зображень (GitHub Pages не підтримує API Next.js)
   },
 };
 

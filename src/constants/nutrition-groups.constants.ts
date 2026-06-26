@@ -5,19 +5,9 @@ export const categoryWithFoodsTakeWeight: NutritionCategory[] = [
     categoryId: 1,
     category: "Перше",
     items: [
-      { itemId: 1, name: "Бобові", weight: 210 },
-      { itemId: 2, name: "Картопля", weight: 660 },
-      { itemId: 3, name: "Кукурудза свіжа", weight: 660 },
-      { itemId: 4, name: "Пластівці", weight: 210 },
-      { itemId: 5, name: "Булгур", weight: 210 },
-      { itemId: 6, name: "Гречка", weight: 210 },
-      { itemId: 7, name: "Рис (не шліфований)", weight: 210 },
-      { itemId: 8, name: "Будь-яка крупа", weight: 210 },
-      { itemId: 9, name: "Цільнозернове борошно", weight: 210 },
-      { itemId: 10, name: "Хлібці", weight: 345 },
-      { itemId: 11, name: "Цільнозерновий хліб", weight: 345 },
-      { itemId: 12, name: "Макарони т.с.", weight: 210 },
-      { itemId: 13, name: "Лаваш", weight: 345 },
+      { itemId: 1, name: "Бобові / Пластівці / Булгур / Гречка / Рис (не шліфований) / Будь-яка крупа / Цільнозернове борошно / Макарони т.с.", weight: 210 },
+      { itemId: 2, name: "Картопля / Кукурудза свіжа", weight: 660 },
+      { itemId: 3, name: "Хлібці / Цільнозерновий хліб / Лаваш", weight: 345 },
     ],
   },
   {
@@ -64,7 +54,7 @@ export const categoryWithFoodsTakeWeight: NutritionCategory[] = [
     categoryId: 6,
     category: "Молочка 2",
     items: [
-      { itemId: 31, name: "Сир зернистий (творог) 5%", weight: 160 },
+      { itemId: 31, name: "Сир зернистий 5%", weight: 160 },
       { itemId: 32, name: "Сири м'які, тверді, плавлені", weight: 55 },
       { itemId: 33, name: "Сметана 15%", weight: 110 },
       { itemId: 34, name: "Масло", weight: 27 },
@@ -100,19 +90,10 @@ export const categoryWithFoods: NutritionCategory[] = [
     categoryId: 1,
     category: "Перше",
     items: [
-      { itemId: 1, name: "Бобові", weight: 80 }, // 40г * 2 приема
-      { itemId: 2, name: "Картопля", weight: 280 }, // 140г * 2 приема
-      { itemId: 3, name: "Кукурудза свіжа", weight: 280 }, // 140г * 2 приема
-      { itemId: 4, name: "Пластівці", weight: 80 }, // 40г * 2 приема
-      { itemId: 5, name: "Булгур", weight: 80 },
-      { itemId: 6, name: "Гречка", weight: 80 },
-      { itemId: 7, name: "Рис (не шліфований)", weight: 80 },
-      { itemId: 8, name: "Будь-яка крупа", weight: 80 },
-      { itemId: 9, name: "Цільнозернове борошно", weight: 80 },
-      { itemId: 10, name: "Хлібці", weight: 120 }, // 60г * 2 приема
-      { itemId: 11, name: "Цільнозерновий хліб", weight: 130 }, // 65г * 2 приема
-      { itemId: 12, name: "Макарони т.с.", weight: 80 },
-      { itemId: 13, name: "Лаваш", weight: 120 }, // 60г * 2 приема
+      { itemId: 1, name: "Бобові / Пластівці / Булгур / Гречка / Рис (не шліфований) / Будь-яка крупа / Цільнозернове борошно / Макарони т.с.", weight: 80 },
+      { itemId: 2, name: "Картопля / Кукурудза свіжа", weight: 280 },
+      { itemId: 3, name: "Хлібці / Лаваш", weight: 120 },
+      { itemId: 4, name: "Цільнозерновий хліб", weight: 130 },
     ],
   },
   {
@@ -127,39 +108,39 @@ export const categoryWithFoods: NutritionCategory[] = [
   {
     categoryId: 3,
     category: "Солодощі",
-    items: [{ itemId: 17, name: "Солодощі", weight: 60 }], // 60г за прием
+    items: [{ itemId: 17, name: "Солодощі", weight: 60 }], // 60г за прийом
   },
   {
     categoryId: 4,
     category: "М'ясне",
     items: [
-      { itemId: 18, name: "Телятина", weight: 280 }, // 140г * 2 приема
-      { itemId: 19, name: "Печінка", weight: 280 }, // 140г * 2 приема
-      { itemId: 20, name: "Куряче або індиче філе", weight: 320 }, // 160г * 2 приема
-      { itemId: 21, name: "Риба (до 5% жиру)", weight: 350 }, // 175г * 2 приема
-      { itemId: 22, name: "Риба (від 5% жиру)", weight: 230 }, // 115г * 2 приема
-      { itemId: 23, name: "Яйця", amount: 6 }, // 3 яйця * 2 приема
-      { itemId: 24, name: "Морепродукти", weight: 380 }, // 190г * 2 приема
+      { itemId: 18, name: "Телятина", weight: 280 }, // 140г * 2 прийоми
+      { itemId: 19, name: "Печінка", weight: 280 }, // 140г * 2 прийоми
+      { itemId: 20, name: "Куряче або індиче філе", weight: 320 }, // 160г * 2 прийоми
+      { itemId: 21, name: "Риба (до 5% жиру)", weight: 350 }, // 175г * 2 прийоми
+      { itemId: 22, name: "Риба (від 5% жиру)", weight: 230 }, // 115г * 2 прийоми
+      { itemId: 23, name: "Яйця", amount: 6 }, // 3 яйця * 2 прийоми
+      { itemId: 24, name: "Морепродукти", weight: 380 }, // 190г * 2 прийоми
     ],
   },
   {
     categoryId: 5,
     category: "Соуси",
     items: [
-      { itemId: 25, name: "Олія", weight: 20 }, // 10г * 2 приема
-      { itemId: 26, name: "Майонез", weight: 26 }, // 13г * 2 приема
-      { itemId: 27, name: "Авокадо", weight: 110 }, // 55г * 2 приема
-      { itemId: 28, name: "Оливки", weight: 140 }, // 70г * 2 приема
-      { itemId: 29, name: "Гірчиця", weight: 48 }, // 24г * 2 приема
-      { itemId: 30, name: "Кетчуп", weight: 72 }, // 36г * 2 приема
-      { itemId: 43, name: "Cметана", weight: 98 }, // 49г * 2 приема
+      { itemId: 25, name: "Олія", weight: 20 }, // 10г * 2 прийоми
+      { itemId: 26, name: "Майонез", weight: 26 }, // 13г * 2 прийоми
+      { itemId: 27, name: "Авокадо", weight: 110 }, // 55г * 2 прийоми
+      { itemId: 28, name: "Оливки", weight: 140 }, // 70г * 2 прийоми
+      { itemId: 29, name: "Гірчиця", weight: 48 }, // 24г * 2 прийоми
+      { itemId: 30, name: "Кетчуп", weight: 72 }, // 36г * 2 прийоми
+      { itemId: 43, name: "Cметана", weight: 98 }, // 49г * 2 прийоми
     ],
   },
   {
     categoryId: 6,
     category: "Молочка 2",
     items: [
-      { itemId: 31, name: "Сир зернистий (творог) 5%", weight: 150 },
+      { itemId: 31, name: "Сир зернистий 5%", weight: 150 },
       { itemId: 32, name: "Сири м'які, тверді, плавлені", weight: 50 },
       { itemId: 33, name: "Сметана 15%", weight: 100 },
       { itemId: 34, name: "Масло", weight: 25 },
@@ -185,6 +166,6 @@ export const categoryWithFoods: NutritionCategory[] = [
   {
     categoryId: 9,
     category: "Овочі",
-    items: [{ itemId: 42, name: "Овочі", weight: 600 }], // 300г * 2 приема
+    items: [{ itemId: 42, name: "Овочі", weight: 600 }], // 300г * 2 прийоми
   },
 ];

@@ -8,7 +8,7 @@ import AmountSelectionDialog from './AmountSelectionDialog';
 import AvailableProductsList from './AvailableProductsList';
 import ConsumedProductsList from './ConsumedProductsList';
 
-const STORAGE_KEY = 'nutrition-history';
+const STORAGE_KEY = 'nutrition-history-v2';
 
 export default function NutritionList() {
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]);
@@ -60,7 +60,7 @@ export default function NutritionList() {
     }
   }, [selectedItems]);
 
-  // Модифицируем обработчик кнопки сброса
+  // Модифікуємо обробник кнопки скидання
   const handleReset = () => {
     setSelectedItems([]);
     const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
@@ -79,18 +79,18 @@ export default function NutritionList() {
       .flatMap(cat => cat.items)
       .find(ni => ni.itemId === itemId);
     
-    // Находим категорию продукта
+    // Знаходимо категорію продукту
     const currentCategory = categoryWithFoods.find(category => 
       category.items.some(item => item.itemId === itemId)
     );
 
     if (!currentCategory || !nutritionItem) return;
 
-    // Рассчитываем доступное количество
+    // Розраховуємо доступну кількість
     const availableAmount = calculateAvailableAmount(nutritionItem, currentCategory.items);
     const currentAmount = existingItem?.amount || 0;
     
-    // Максимальное количество - это текущее количество плюс доступный остаток
+    // Максимальна кількість — це поточна кількість плюс доступний залишок
     const effectiveMaxAmount = currentAmount + availableAmount;
     
     setCurrentItem({ 
@@ -112,20 +112,20 @@ export default function NutritionList() {
     if (currentItem) {
       const existingItemIndex = selectedItems.findIndex(item => item.itemId === currentItem.itemId);
       
-      // Находим категорию текущего продукта
+      // Знаходимо категорію поточного продукту
       const currentCategory = categoryWithFoods.find(category => 
         category.items.some(item => item.itemId === currentItem.itemId)
       );
 
       if (!currentCategory) return;
 
-      // Получаем предыдущее значение количества
+      // Отримуємо попереднє значення кількості
       const previousAmount = existingItemIndex >= 0 ? selectedItems[existingItemIndex].amount : 0;
       
-      // Рассчитываем разницу между новым и предыдущим значением
+      // Розраховуємо різницю між новим і попереднім значенням
       const amountDifference = amount - previousAmount;
 
-      // Проверяем общий процент потребления по группе
+      // Перевіряємо загальний відсоток споживання по групі
       const categoryItems = currentCategory.items;
       const totalPercentage = categoryItems.reduce((acc, item) => {
         const existingItem = selectedItems.find(si => si.itemId === item.itemId);
@@ -136,13 +136,13 @@ export default function NutritionList() {
         return acc + (itemAmount / itemMaxAmount) * 100;
       }, 0);
 
-      // Если общий процент превышает 100%, отменяем изменение
+      // Якщо загальний відсоток перевищує 100%, скасовуємо зміну
       if (totalPercentage > 100) {
-        alert('Нельзя съесть больше 100% продуктов из группы');
+        alert('Не можна з\'їсти більше 100% продуктів з групи');
         return;
       }
 
-      // Обновляем или добавляем текущий продукт
+      // Оновлюємо або додаємо поточний продукт
       const updatedItems = [...selectedItems];
       if (existingItemIndex >= 0) {
         updatedItems[existingItemIndex] = {
@@ -239,7 +239,7 @@ export default function NutritionList() {
         onClick={handleReset}
         className="mt-4 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
       >
-        Сбросить съеденное
+        Скинути з&apos;їдене
       </button>
       <AmountSelectionDialog
         open={openDialog}

@@ -12,7 +12,7 @@ export default function ConsumedProductsList({
 }: ConsumedProductsListProps) {
   const consumedItems = selectedItems.filter(item => item.amount > 0 && item.isExplicitlySelected);
 
-  // Группируем съеденные продукты по категориям
+  // Групуємо з'їдені продукти за категоріями
   const groupedConsumedItems = categoryWithFoods.map(category => {
     const categoryConsumedItems = category.items
       .map(item => {

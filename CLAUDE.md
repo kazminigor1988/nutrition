@@ -58,4 +58,4 @@ Stored under the single localStorage key `nutrition-history` as `{ "YYYY-MM-DD":
 
 - `@/*` resolves to `./src/*` (see `tsconfig.json`).
 - All components that touch state or `window` are marked `'use client'`.
-- UI strings are a mix of Ukrainian and Russian (catalog data is Ukrainian; some buttons and dialog labels are Russian). Match the existing language of the surrounding text rather than normalizing.
+- All UI strings and catalog data are in Ukrainian. Keep new strings Ukrainian — do not reintroduce Russian.
