@@ -51,12 +51,12 @@ export default function AvailableProductsList({ categories, selectedItems, onIte
                   >
                     <span className="text-base sm:text-lg mb-2 sm:mb-0">{item.name}</span>
                     <div className="text-sm sm:text-base space-y-1 space-x-4">
-                      <span className="text-emerald-400">{item.availableAmount}{unit}</span>
                       {consumedAmount > 0 && (
                         <span className="text-blue-400 block inline">
                           {consumedAmount}{unit}
                         </span>
                       )}
+                      <span className="text-emerald-400">{item.availableAmount}{unit}</span>
                     </div>
                   </li>
                 );
