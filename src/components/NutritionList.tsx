@@ -187,9 +187,21 @@ export default function NutritionList() {
   };
 
   const calculateAvailableAmount = (item: NutritionItem, categoryItems: NutritionItem[]) => {
-    const availablePercentage = getAvailablePercentage(categoryItems);
-    const maxAmount = getItemMaxAmount(item);
-    return Math.floor((maxAmount * availablePercentage) / 100);
+    const itemMax = getItemMaxAmount(item);
+    if (itemMax === 0) return 0;
+
+    const currentForItem = selectedItems.find(si => si.itemId === item.itemId)?.amount || 0;
+
+    const othersUsedFraction = categoryItems.reduce((acc, ci) => {
+      if (ci.itemId === item.itemId) return acc;
+      const ciMax = getItemMaxAmount(ci);
+      if (ciMax === 0) return acc;
+      const ciAmount = selectedItems.find(si => si.itemId === ci.itemId)?.amount || 0;
+      return acc + ciAmount / ciMax;
+    }, 0);
+
+    const remaining = itemMax * (1 - othersUsedFraction) - currentForItem;
+    return Math.max(0, Math.floor(remaining));
   };
 
   const enrichCategoriesWithAvailableAmounts = (categories: typeof categoryWithFoods) => {
